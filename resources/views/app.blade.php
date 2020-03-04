@@ -64,6 +64,8 @@
     <script src='{{asset("assets/libs/jqvmap/dist/maps/jquery.vmap.usa.js?1582373134")}}'></script>
     <script src='{{asset("assets/libs/jqvmap/dist/maps/continents/jquery.vmap.europe.js?1582373134")}}'></script>
     <script src='{{asset("assets/libs/peity/jquery.peity.min.js?1582373134")}}'></script>
+    <script src='{{asset("assets/libs/flatpickr/dist/flatpickr.min.js?1582373134")}}'></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
     <!-- Tabler Core -->
     <script src='{{asset("assets/js/tabler.min.js?1582373134")}}'></script>

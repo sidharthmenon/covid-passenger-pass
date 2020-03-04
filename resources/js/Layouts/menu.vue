@@ -21,6 +21,16 @@
                 span.nav-link-icon
                   i.feather-sliders
                 span.nav-link-title Roles
+            li.nav-item(v-if="$page.auth.user.perms.includes('passenger_view')")
+              inertia-link.nav-link(:href='route("passengers.index")')
+                span.nav-link-icon
+                  i.feather-users
+                span.nav-link-title Passengers
+            li.nav-item
+              inertia-link.nav-link(:href="route('self.create')")
+                span.nav-link-icon
+                  i.feather-clipboard
+                span.nav-link-title Self Declaration Form
             li.nav-item(v-if="false")
               a.nav-link.dropdown-toggle(href='#navbar-base' data-toggle='dropdown' role='button' aria-expanded='false')
                 span.nav-link-icon
@@ -40,7 +50,7 @@
                 li
                   a.dropdown-item(href='./buttons.html')
                     | Buttons        
-          .navbar-side
+          .navbar-side(v-if="$page.auth.user.name")
             .ml-auto.d-none-navbar-vertical-narrow
               h5.text-center {{$page.auth.user.name}} - {{$page.auth.user.role}}
             form(:action="route('logout')" method="POST")

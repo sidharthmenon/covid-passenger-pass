@@ -7,10 +7,10 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role');
+    // }
     //
     public function index(){
         return Inertia::render('Dashboard/Index');

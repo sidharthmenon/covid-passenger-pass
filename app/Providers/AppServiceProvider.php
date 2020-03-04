@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
                         'email' => Auth::user()->email,
                         'role' => Auth::user()->role->name,
                         'perms' => array_column(auth()->user()->role->permissions->toArray(),"name"),                        
-                    ] : null,
+                    ] : ['perms' =>[]],
                 ];
             },
             'flash' => function () {

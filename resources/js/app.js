@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import route from 'ziggy'
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 
 
 Vue.config.productionTip = false
