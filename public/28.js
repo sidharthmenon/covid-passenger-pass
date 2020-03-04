@@ -51,6 +51,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -131,7 +133,22 @@ var render = function() {
           _c("h2", { staticClass: "text-center text-center" }, [
             _vm._v("Self Service Portal")
           ])
-        ])
+        ]),
+        _c(
+          "div",
+          { staticClass: "col-sm-12 text-center mt-5" },
+          [
+            _c(
+              "inertia-link",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { href: _vm.route("self.create") }
+              },
+              [_vm._v("Fill Self Declaration Form")]
+            )
+          ],
+          1
+        )
       ])
     ])
   ])

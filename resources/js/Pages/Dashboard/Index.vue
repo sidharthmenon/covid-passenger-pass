@@ -7,6 +7,8 @@
       .row.pt-5
         .col-sm-12
           h2.text-center.text-center Self Service Portal
+        .col-sm-12.text-center.mt-5
+          inertia-link.btn.btn-primary(:href="route('self.create')") Fill Self Declaration Form
 </template>
 
 <script>
