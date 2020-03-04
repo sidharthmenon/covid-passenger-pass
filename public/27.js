@@ -167,11 +167,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      sending: false,
       form: {
-        remarks: '',
-        status: ''
+        remarks: this.passenger.remarks,
+        status: this.passenger.status
       }
     };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.sending = true;
+      this.$inertia.put(this.route('passengers.update', {
+        id: this.passenger.id
+      }), {
+        remarks: this.form.remarks,
+        status: this.form.status,
+        _token: this.$page.csrf_token
+      }).then(function () {
+        return _this.sending = false;
+      });
+    }
   }
 });
 
@@ -546,11 +563,28 @@ var render = function() {
                     _vm._v("Remarks")
                   ]),
                   _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.remarks,
+                        expression: "form.remarks"
+                      }
+                    ],
                     staticClass: "form-control",
                     attrs: {
                       name: "example-textarea-input",
                       rows: "6",
                       placeholder: "Remarks"
+                    },
+                    domProps: { value: _vm.form.remarks },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "remarks", $event.target.value)
+                      }
                     }
                   })
                 ]),
@@ -597,7 +631,12 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-success ml-auto",
-                      attrs: { type: "submit", disabled: _vm.sending }
+                      attrs: { type: "submit", disabled: _vm.sending },
+                      on: {
+                        click: function($event) {
+                          return _vm.submit()
+                        }
+                      }
                     },
                     [_vm._v("Save")]
                   )

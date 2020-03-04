@@ -116,6 +116,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -137,6 +140,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    statusclass: function statusclass(item) {
+      if (item == "cleared") {
+        return 'bg-green';
+      }
+
+      if (item == "not-cleared") {
+        return 'bg-red';
+      }
+
+      if (item == "pending") {
+        return 'bg-azure';
+      }
+    },
     visit: function visit(data) {
       this.$inertia.visit(this.route('passengers.index'), {
         method: 'get',
@@ -358,6 +374,7 @@ var render = function() {
                         _c("th", [_vm._v("Passport Number")]),
                         _c("th", [_vm._v("Flight Number")]),
                         _c("th", [_vm._v("Seat Number")]),
+                        _c("th", [_vm._v("Status")]),
                         _c("th")
                       ])
                     ]),
@@ -369,6 +386,16 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(passenger.passport))]),
                           _c("td", [_vm._v(_vm._s(passenger.flight))]),
                           _c("td", [_vm._v(_vm._s(passenger.seat))]),
+                          _c("td", [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "badge",
+                                class: _vm.statusclass(passenger.status)
+                              },
+                              [_vm._v(_vm._s(passenger.status))]
+                            )
+                          ]),
                           _c(
                             "td",
                             { staticClass: "w-1" },

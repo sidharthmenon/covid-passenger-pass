@@ -88,6 +88,11 @@ class PassengerController extends Controller
     public function update(Request $request, Passenger $passenger)
     {
         //
+        $passenger->status = $request->input('status');
+        $passenger->remarks = $request->input('remarks');
+        $passenger->save();
+
+        return redirect()->back()->with(["message" => "saved"]);
     }
 
     /**

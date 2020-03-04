@@ -71,7 +71,7 @@
             .card-body.border-bottom.py-3
               .mb-3
                 label.form-label Remarks
-                textarea.form-control(name='example-textarea-input' rows='6' placeholder='Remarks')
+                textarea.form-control(name='example-textarea-input' rows='6' placeholder='Remarks' v-model="form.remarks")
               .mb-3
                 label.form-label Status
                 selectize.form-select(name='status' v-model="form.status" :settings="{ placeholder: 'Status'}")
@@ -79,7 +79,7 @@
                   option(value="cleared") Cleared
                   option(value="not-cleared") Not Cleared
               .mb-3.text-right
-                button.btn.btn-success.ml-auto(type="submit" :disabled='sending') Save
+                button.btn.btn-success.ml-auto(type="submit" :disabled='sending' @click="submit()") Save
         
 </template>
 
@@ -100,11 +100,22 @@ export default {
   },
   data(){
     return {
-        form:{
-          remarks:'',
-          status: '',
-        }
+      sending: false,
+      form:{
+        remarks:this.passenger.remarks,
+        status: this.passenger.status,
+      }
     }
   },
+  methods:{
+    submit(){
+      this.sending = true
+      this.$inertia.put(this.route('passengers.update', {id: this.passenger.id}), {
+        remarks: this.form.remarks,
+        status: this.form.status,
+        _token: this.$page.csrf_token,
+      }).then(() => this.sending = false)
+    }
+  }
 }
 </script>

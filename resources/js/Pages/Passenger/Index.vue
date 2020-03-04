@@ -40,6 +40,7 @@
                     th Passport Number
                     th Flight Number
                     th Seat Number
+                    th Status
                     th
 
                 tbody
@@ -48,6 +49,8 @@
                     td {{passenger.passport}}
                     td {{passenger.flight}}
                     td {{passenger.seat}}
+                    td 
+                      span.badge(:class="statusclass(passenger.status)") {{passenger.status}}
                     td.w-1
                       inertia-link(:href="route('passengers.show', {id:passenger.id})" v-if="$page.auth.user.perms.includes('passenger_view')")
                         i.feather-eye
@@ -95,6 +98,17 @@ export default {
     }
   },
   methods:{
+    statusclass(item){
+      if(item=="cleared"){
+        return 'bg-green';
+      }
+      if(item=="not-cleared"){
+        return 'bg-red';
+      }
+      if(item=="pending"){
+        return 'bg-azure';
+      }
+    },
     visit(data){
       this.$inertia.visit(this.route('passengers.index'), {
         method: 'get',
