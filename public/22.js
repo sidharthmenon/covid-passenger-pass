@@ -786,43 +786,62 @@ var render = function() {
                             _c("div", { staticClass: "col-sm-12" }, [
                               _c("div", { staticClass: "row" }, [
                                 _c("div", { staticClass: "col-6" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "mb-3" },
-                                    [
-                                      _c(
-                                        "label",
-                                        { staticClass: "form-label" },
-                                        [_vm._v("State")]
-                                      ),
-                                      _c(
-                                        "selectize",
-                                        {
-                                          staticClass: "form-select",
-                                          attrs: {
-                                            name: "state",
-                                            settings: { placeholder: "State" }
-                                          },
-                                          model: {
+                                  _c("div", { staticClass: "mb-3" }, [
+                                    _c("label", { staticClass: "form-label" }, [
+                                      _vm._v("State")
+                                    ]),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
                                             value: _vm.form.state,
-                                            callback: function($$v) {
-                                              _vm.$set(_vm.form, "state", $$v)
-                                            },
                                             expression: "form.state"
                                           }
+                                        ],
+                                        staticClass: "form-select",
+                                        attrs: {
+                                          name: "state",
+                                          settings: { placeholder: "State" }
                                         },
-                                        _vm._l(_vm.states, function(state) {
-                                          return _c(
-                                            "option",
-                                            { domProps: { value: state.name } },
-                                            [_vm._v(_vm._s(state.name))]
-                                          )
-                                        }),
-                                        0
-                                      )
-                                    ],
-                                    1
-                                  )
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "state",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      _vm._l(_vm.states, function(state) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: state.name } },
+                                          [_vm._v(_vm._s(state.name))]
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ])
                                 ]),
                                 _c(
                                   "div",
@@ -941,48 +960,69 @@ var render = function() {
                               "div",
                               { staticClass: "col-sm-12" },
                               [
-                                _c(
-                                  "div",
-                                  { staticClass: "mb-3" },
-                                  [
-                                    _c("label", { staticClass: "form-label" }, [
-                                      _vm._v(
-                                        "Details of the countries visited since last 28 days?"
-                                      )
-                                    ]),
-                                    _c(
-                                      "selectize",
-                                      {
-                                        staticClass: "form-select",
-                                        attrs: {
-                                          name: "countries",
-                                          settings: {
-                                            placeholder:
-                                              "Details of the countries visited since last 28 days?",
-                                            maxItems: 15,
-                                            plugins: ["remove_button"]
-                                          }
-                                        },
-                                        model: {
+                                _c("div", { staticClass: "mb-3" }, [
+                                  _c("label", { staticClass: "form-label" }, [
+                                    _vm._v(
+                                      "Details of the countries visited since last 28 days?"
+                                    )
+                                  ]),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
                                           value: _vm.form.countries,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.form, "countries", $$v)
-                                          },
                                           expression: "form.countries"
                                         }
+                                      ],
+                                      staticClass: "form-select",
+                                      attrs: {
+                                        name: "countries",
+                                        settings: {
+                                          placeholder:
+                                            "Details of the countries visited since last 28 days?",
+                                          maxItems: 15,
+                                          plugins: ["remove_button"]
+                                        }
                                       },
-                                      _vm._l(_vm.countries, function(country) {
-                                        return _c(
-                                          "option",
-                                          { domProps: { value: country.id } },
-                                          [_vm._v(_vm._s(country.name))]
-                                        )
-                                      }),
-                                      0
-                                    )
-                                  ],
-                                  1
-                                ),
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.form,
+                                            "countries",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    _vm._l(_vm.countries, function(country) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: country.id } },
+                                        [_vm._v(_vm._s(country.name))]
+                                      )
+                                    }),
+                                    0
+                                  )
+                                ]),
                                 _c("form_input", {
                                   attrs: {
                                     type: "text",
