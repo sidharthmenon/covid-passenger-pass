@@ -54,6 +54,7 @@
                           label.form-label State
                           selectize.form-select(name='state' v-model="form.state" :settings="{ placeholder: 'State' }")
                             option(v-for="state in states" :value='state.name') {{state.name}}
+                          form_error(:errors="$page.errors.state")
                       .col-6
                         form_input(type="text", name="pin", label="PIN", placeholder="PIN" v-model="form.pin")
                   .col-sm-12
@@ -76,6 +77,7 @@
                       label.form-label Details of the countries visited since last 28 days?
                       selectize.form-select(name='countries' v-model="form.countries" :settings="{ placeholder: 'Details of the countries visited since last 28 days?', maxItems: 15, plugins: ['remove_button'], }")
                         option(v-for="country in countries" :value='country.id') {{country.name}}
+                      form_error(:errors="$page.errors.countries")
                     form_input(type="text", name="cities", label="Details of the cities visited since last 28 days?", placeholder="Details of the cities visited since last 28 days?" v-model="form.cities")
                     .mb-3
                       .form-label Are you suffering from any of the following symptoms
@@ -104,6 +106,7 @@
 import layout from '../../Layouts/main';
 import pageHeader from '../../Components/pageHeader';
 import formInput from '../../Components/formInput';
+import formError from '../../Components/formErrors';
 import Selectize from 'vue2-selectize'
 
 export default {
@@ -113,6 +116,7 @@ export default {
     layout: layout,
     page_header: pageHeader,
     form_input: formInput,
+    form_error: formError,
     Selectize,
   },
   data(){

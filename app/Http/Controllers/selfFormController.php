@@ -7,6 +7,7 @@ use App\Passenger;
 use App\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class selfFormController extends Controller
@@ -48,6 +49,33 @@ class selfFormController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            "name" => 'required',
+            "seat" => 'required',
+            "flight" => 'required',
+            "passport" => 'required',
+            "date" => 'required',
+            "origin" => 'required',
+            "destination" => 'required',
+            "house" => 'required',
+            "street" => 'required',
+            "tehsil" => 'required',
+            "district" => 'required',
+            "state" => 'required',
+            "pin" => 'required',
+            "phone" => 'required',
+            "mobile" => 'required',
+            "email" => 'required',
+            "countries" => 'required',
+            "cities" => 'required',
+            "fever" => 'required',
+            "cough" => 'required',
+            "respiratory" => 'required'
+        ]);
+
+        if($validator->fails()){
+            return redirect()->route('self.create')->withErrors($validator)->withInput()->with(["message"=>"Error Please check all fields"]);
+        }
         //
         $passenger = new Passenger();
 
