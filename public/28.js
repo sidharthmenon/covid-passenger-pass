@@ -53,6 +53,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -128,7 +132,7 @@ var render = function() {
           })
         ])
       ]),
-      _c("div", { staticClass: "row pt-5" }, [
+      _c("div", { staticClass: "row pt-5 justify-content-center" }, [
         _c("div", { staticClass: "col-sm-12" }, [
           _c("h2", { staticClass: "text-center text-center" }, [
             _vm._v("Self Service Portal")
@@ -136,19 +140,33 @@ var render = function() {
         ]),
         _c(
           "div",
-          { staticClass: "col-sm-12 text-center mt-5" },
+          { staticClass: "col-sm-4 col-8 text-center mt-5" },
           [
             _c(
               "inertia-link",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary d-block",
                 attrs: { href: _vm.route("self.create") }
               },
               [_vm._v("Fill Self Declaration Form")]
             )
           ],
           1
-        )
+        ),
+        _c("div", { staticClass: "col-sm-4 col-8 text-center mt-3" }, [
+          _c(
+            "a",
+            { staticClass: "btn btn-warning d-block", attrs: { href: "#" } },
+            [_vm._v("Designated Hospitals")]
+          )
+        ]),
+        _c("div", { staticClass: "col-sm-4 col-8 text-center mt-3" }, [
+          _c(
+            "a",
+            { staticClass: "btn btn-danger d-block", attrs: { href: "#" } },
+            [_vm._v("Do's and Dont's")]
+          )
+        ])
       ])
     ])
   ])
