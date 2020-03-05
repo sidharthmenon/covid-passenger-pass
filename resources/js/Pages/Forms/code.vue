@@ -11,6 +11,7 @@
           qrcode(:value="route('passengers.show', {id: passenger.id})" :options='{ width: 400 }')
           h4.mt-3 {{passenger.name}}
           p {{passenger.passport}}
+          h4.badge.mb-3(:class="statusclass(passenger.status)") {{passenger.status}}
 
       .row
         .col-sm-12
@@ -31,6 +32,19 @@ export default {
     page_header: pageHeader,
     qrcode: VueQrcode,
   },
+  methods:{
+    statusclass(item){
+      if(item=="cleared"){
+        return 'bg-green';
+      }
+      if(item=="not-clear"){
+        return 'bg-red';
+      }
+      if(item=="pending"){
+        return 'bg-azure';
+      }
+    },
+  }
 }
 </script>
 

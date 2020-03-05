@@ -15,7 +15,7 @@
               form_input(type="text", name="flight", label="Flight Number", placeholder="Flight Number" v-model="form.flight")
               .row
                 .col-sm-12.text-right.d-flex
-                  button.btn.btn-primary.ml-auto(type="submit" :disabled='sending') Submit
+                  button.btn.btn-primary.ml-auto(type="submit" :disabled='sending' @click.prevent="submit") Submit
 
 </template>
 
@@ -33,14 +33,24 @@ export default {
   },
   data(){
     return {
+      sending: false,
       form: {
+        flight: '',
+        date: '',
         passport: '',
       }
+    }
+  },
+  methods:{
+    submit(){
+      this.sending = true
+      this.$inertia.post(this.route('self.retrieve'), {
+        passport: this.form.passport,
+        date: this.form.date,
+        flight: this.form.flight,
+        _token: this.$page.csrf_token,
+      }).then(() => {this.sending = false;})
     }
   }
 }
 </script>
-
-<style lang="sass" scoped>
-
-</style>

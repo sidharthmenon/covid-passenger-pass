@@ -26,6 +26,7 @@ Auth::routes(['register' => false]);
 Route::resource('users', 'Admin\UserController');
 Route::resource('roles', 'Admin\RoleController');
 
+Route::post('self/retrieve', 'selfFormController@view')->name('self.retrieve');
 Route::resource('self', 'selfFormController');
 Route::resource('passengers', 'Admin\PassengerController');
 

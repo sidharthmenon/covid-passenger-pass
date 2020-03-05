@@ -42,6 +42,15 @@ class selfFormController extends Controller
         ]);
     }
 
+    public function view(Request $request){
+        //dd($request->input());
+        $passenger = Passenger::where('passport',$request->input('passport'))
+                        ->where('date',$request->input('date'))
+                        ->where('flight', $request->input('flight'))->firstOrFail();
+
+        return redirect(URL::signedRoute('self.show',[$passenger->id]));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
