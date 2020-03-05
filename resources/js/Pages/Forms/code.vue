@@ -10,8 +10,10 @@
         .col-sm-6.text-center
           qrcode(:value="route('passengers.show', {id: passenger.id})" :options='{ width: 400 }')
           h4.mt-3 {{passenger.name}}
-          p {{passenger.passport}}
-          h4.badge.mb-3(:class="statusclass(passenger.status)") {{passenger.status}}
+          p.m-0 {{passenger.passport}}
+          img.img-fluid.w-50(src="/assets/img/cleared.png" v-if="passenger.status=='cleared'")
+          img.img-fluid.w-50(src="/assets/img/not-clear.png" v-else-if="passenger.status=='not-clear'")
+          h4.badge.mb-3(:class="statusclass(passenger.status)" v-else) {{passenger.status}}
 
       .row
         .col-sm-12
