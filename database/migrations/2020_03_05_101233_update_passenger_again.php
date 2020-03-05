@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdatePassengersTable extends Migration
+class UpdatePassengerAgain extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,9 @@ class UpdatePassengersTable extends Migration
     {
         Schema::table('passengers', function (Blueprint $table) {
             //
-            // $table->text('remarks')->nullable();
-            // $table->string('status')->nullable();
+            $table->string('tehsil')->nullable()->change();
+            $table->string('phone')->nullable()->change();
+            $table->string('email')->nullable()->change();
         });
     }
 

@@ -1,7 +1,7 @@
 <template lang="pug">
   .mb-3
     label.form-label {{label}}
-    input.form-control(:class="$page.errors[name]?'is-invalid':''" :type='type' :name='name' :placeholder='placeholder' :value="value" @input="$emit('input', $event.target.value)" required)
+    input.form-control(:class="$page.errors[name]?'is-invalid':''" :type='type' :name='name' :placeholder='placeholder' :value="value" @input="$emit('input', $event.target.value)")
     form_error(:errors="$page.errors[name]")
 </template>
 
