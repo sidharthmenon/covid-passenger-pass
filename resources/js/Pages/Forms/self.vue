@@ -19,7 +19,7 @@
                   .col-sm-6
                     .row
                       .col-6
-                        form_input(type="number", name="seat", label="Seat Number", placeholder="Seat Number" v-model="form.seat")
+                        form_input(type="text", name="seat", label="Seat Number", placeholder="Seat Number" v-model="form.seat")
                       .col-6
                         form_input(type="text", name="flight", label="Flight Number", placeholder="Flight Number" v-model="form.flight")
                   .col-sm-6
@@ -193,9 +193,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  .flatpickr-calendar {
-    background: white;
-  }
-</style>
