@@ -23,11 +23,18 @@ class PassengerController extends Controller
         $perPage = request('perPage', 10);
         $searchParam = request('searchParam', 'name');
         $query = '%'.request('query', '').'%';
-        $passenger = Passenger::where($searchParam, 'LIKE', $query)->paginate($perPage);
+        $todate = request('todate',date("Y-m-d"));
+        $fromdate = request('fromdate',date("Y-m-d"));
+        $passenger = Passenger::where($searchParam, 'LIKE', $query)
+                        ->whereDate('date','>=',$fromdate)
+                        ->whereDate('date','<=',$todate)
+                        ->paginate($perPage);
         return Inertia::render('Passenger/Index', [
             'passengers' => $passenger,
             'searchParam' => $searchParam,
-            'query' => request('query', '')
+            'query' => request('query', ''),
+            'todate' => $todate,
+            'fromdate' => $fromdate,
         ]);
     }
 

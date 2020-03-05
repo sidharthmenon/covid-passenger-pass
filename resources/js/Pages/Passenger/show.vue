@@ -77,7 +77,7 @@
                 selectize.form-select(name='status' v-model="form.status" :settings="{ placeholder: 'Status'}")
                   option(value="pending") Pending
                   option(value="cleared") Cleared
-                  option(value="not-cleared") Not Cleared
+                  option(value="not-clear") Not Cleared
               .mb-3.text-right
                 button.btn.btn-success.ml-auto(type="submit" :disabled='sending' @click="submit()") Save
         

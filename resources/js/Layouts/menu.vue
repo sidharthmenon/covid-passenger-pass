@@ -31,6 +31,11 @@
                 span.nav-link-icon
                   i.feather-clipboard
                 span.nav-link-title Self Declaration Form
+            li.nav-item
+              inertia-link.nav-link(:href="route('self.index')")
+                span.nav-link-icon
+                  i.feather-grid
+                span.nav-link-title Retrive QR Code
             li.nav-item(v-if="false")
               a.nav-link.dropdown-toggle(href='#navbar-base' data-toggle='dropdown' role='button' aria-expanded='false')
                 span.nav-link-icon

@@ -49,7 +49,7 @@
         <div class="container">
           <div class="row text-center align-items-center justify-content-center flex-row-reverse">
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
-              Copyright © 2020 | All rights reserved.
+              Copyright © 2020 | All rights reserved | Developed By Kerala Startup Mission
             </div>
           </div>
         </div>

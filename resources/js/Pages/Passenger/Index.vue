@@ -10,19 +10,28 @@
             //- .card-header
             //-   h3.card-title 
             .card-body.border-bottom.py-3
-              .d-flex
+              .d-flex.flex-wrap
                 .text-muted
                   | Show
                   .mx-2.d-inline-block
                     input.form-control.form-control-sm(type='text' value='8' size='3' v-model="form.per_page" @input="search()")
                   | entries
-                //- .ml-auto.text-muted
-                //-   | Filter By:
-                //-   .ml-2.d-inline-block
-                //-     select(v-model="form.filter_name")
-                //-       option name
-                //-       option email
-                //-       option role
+                .ml-auto.text-muted
+                  | From Date:
+                  .ml-2.d-inline-block
+                    input.form-control.form-control-sm(type='date' v-model="form.fromdate" @change="search()")
+                .ml-auto.text-muted
+                  | To Date:
+                  .ml-2.d-inline-block
+                    input.form-control.form-control-sm(type='date' v-model="form.todate" @change="search()")
+                .ml-auto.text-muted
+                  | Filter By:
+                  .ml-2.d-inline-block
+                    select.form-control(v-model="form.searchParam" @change="search()")
+                      option name
+                      option passport
+                      option flight
+                      option status
                 .text-muted.ml-auto
                   | Search:
                   .ml-2.d-inline-block
@@ -54,6 +63,9 @@
                     td.w-1
                       inertia-link(:href="route('passengers.show', {id:passenger.id})" v-if="$page.auth.user.perms.includes('passenger_view')")
                         i.feather-eye
+                  tr(v-if="passengers.data.length<1")
+                    td(colspan=5)
+                      p.text-muted.m-0.text-center No data - Please check filters
 
                   
             .card-footer.d-flex.align-items-center
@@ -83,7 +95,7 @@ import pageHeader from '../../Components/pageHeader';
 
 export default {
   metaInfo: { title: 'Passengers' },
-  props: ['passengers', 'searchParam', 'query'],
+  props: ['passengers', 'searchParam', 'query', 'todate', 'fromdate'],
   components: {
     layout: layout,
     page_header: pageHeader,
@@ -93,7 +105,9 @@ export default {
       form: {
         per_page : this.passengers.per_page,
         searchParam: this.searchParam,
-        query: this.query
+        query: this.query,
+        todate: this.todate,
+        fromdate: this.fromdate,
       }
     }
   },
@@ -102,7 +116,7 @@ export default {
       if(item=="cleared"){
         return 'bg-green';
       }
-      if(item=="not-cleared"){
+      if(item=="not-clear"){
         return 'bg-red';
       }
       if(item=="pending"){
@@ -123,7 +137,9 @@ export default {
       this.visit({
         perPage: this.form.per_page,
         searchParam: this.form.searchParam,
-        query: this.form.query
+        query: this.form.query,
+        todate: this.form.todate,
+        fromdate: this.form.fromdate,
       })
     },
     page(number){
@@ -131,7 +147,9 @@ export default {
         page: number,
         perPage: this.form.per_page,
         searchParam: this.form.searchParam,
-        query: this.form.query
+        query: this.form.query,
+        todate: this.form.todate,
+        fromdate: this.form.fromdate,
       });
     },
     delete_item(id){

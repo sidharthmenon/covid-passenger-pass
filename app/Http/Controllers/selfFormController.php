@@ -23,6 +23,7 @@ class selfFormController extends Controller
     public function index()
     {
         //
+        return Inertia::render('Forms/retrive');
     }
 
     /**

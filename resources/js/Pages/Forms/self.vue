@@ -56,13 +56,13 @@
                             option(v-for="state in states" :value='state.name') {{state.name}}
                           form_error(:errors="$page.errors.state")
                       .col-6
-                        form_input(type="text", name="pin", label="PIN", placeholder="PIN" v-model="form.pin")
+                        form_input(type="number", name="pin", label="PIN", placeholder="PIN" v-model="form.pin")
                   .col-sm-12
                     .row
                       .col-6
-                        form_input(type="text", name="phone", label="Residence Number", placeholder="Residence Number" v-model="form.phone")
+                        form_input(type="number", name="phone", label="Residence Phone", placeholder="Residence Number" v-model="form.phone")
                       .col-6
-                        form_input(type="text", name="mobile", label="Mobile", placeholder="Mobile" v-model="form.mobile")
+                        form_input(type="number", name="mobile", label="Mobile", placeholder="Mobile" v-model="form.mobile")
                   .col-sm-6
                     form_input(type="text", name="email", label="Email", placeholder="Email" v-model="form.email")
 
@@ -174,7 +174,7 @@ export default {
         cough: this.form.cough,
         respiratory: this.form.respiratory,
         _token: this.$page.csrf_token,
-      }).then(() => this.sending = false)
+      }).then(() => {this.sending = false; this.step=1;})
     },
     next(){
       // alert('');
