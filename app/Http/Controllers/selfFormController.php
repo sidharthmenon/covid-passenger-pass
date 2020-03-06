@@ -75,7 +75,7 @@ class selfFormController extends Controller
             "pin" => 'required',
             // "phone" => 'required',
             "mobile" => 'required',
-            "email" => 'required',
+            // "email" => 'required',
             "countries" => 'required',
             "cities" => 'required',
             "fever" => 'required',
