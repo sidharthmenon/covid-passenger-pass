@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Airport;
 use App\Country;
 use App\Passenger;
 use App\State;
@@ -36,9 +37,11 @@ class selfFormController extends Controller
         //
         $states= State::all();
         $countries = Country::all();
+        $airports = Airport::all();
         return Inertia::render('Forms/self', [
             'states' => $states,
-            'countries' => $countries
+            'countries' => $countries,
+            'airports' => $airports
         ]);
     }
 

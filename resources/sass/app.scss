@@ -136,3 +136,25 @@ a {
 .page {
   min-height: 90vh;
 }
+
+.airport-select {
+  .selectize-dropdown {
+    padding: 0;
+  }
+  .selectize-dropdown-content>div {
+    padding: 5px;
+  }
+  .selectize-dropdown .label {
+    display: block;
+    font-size: 12px;
+  }
+  .selectize-input .label {
+    color: #908181;
+    font-size: 12px;
+    padding-left: 10px;
+  }
+}
+
+.bottom-margin-0 {
+  margin-bottom: 0 !important;
+}

@@ -27,9 +27,17 @@
                   .col-sm-6
                     form_input#date_picker(type="date", name="date", label="Date of Arrival", placeholder="Date of Arrival" v-model="form.date")
                   .col-sm-6
-                    form_input(type="text", name="origin", label="Port of origin of Journey", placeholder="Port of origin of Journey" v-model="form.origin")
+                    .mb-3.airport-select
+                      label.form-label Port of origin of Journey
+                      selectize.form-select(name="origin" v-model="form.origin" :settings="selectizeOptionSource")
+                      form_error(:errors="$page.errors.origin")
+                    //- form_input(type="text", name="origin", label="Port of origin of Journey", placeholder="Port of origin of Journey" v-model="form.origin")
                   .col-sm-6
-                    form_input(type="text", name="destination", label="Port of final destination", placeholder="Port of final destination" v-model="form.destination")
+                    .mb-3.airport-select
+                      label.form-label Port of destination of Journey
+                      selectize.form-select(name="destination" v-model="form.destination" :settings="selectizeOptionDestination")
+                      form_error(:errors="$page.errors.destination")
+                    //- form_input(type="text", name="destination", label="Port of final destination", placeholder="Port of final destination" v-model="form.destination")
 
           .col-sm-6(v-if="step==2")
             .card
@@ -111,7 +119,7 @@ import Selectize from 'vue2-selectize'
 
 export default {
   metaInfo: { title: 'Self Declaration Form' },
-  props: ['states', 'countries'],
+  props: ['states', 'countries', 'airports'],
   components: {
     layout: layout,
     page_header: pageHeader,
@@ -145,6 +153,50 @@ export default {
         fever: false,
         cough: false,
         respiratory: false
+      },
+      selectizeOptionSource:{
+        placeholder: 'Port of origin of Journey', 
+        valueField:'id', 
+        labelField:'name', 
+        searchField:['name', 'city', 'country'], 
+        options: this.airports, 
+        create: false,
+        render: {
+          option: function (data, escape) {
+              return '<div>' +
+                  '<span class="title">' + escape(data.name) + '</span>' +
+                  '<span class="label">City: '+ data.city + ' | Country: ' + data.country + '</span>' +
+                  '</div>';
+          },
+          item: function (data, escape) {
+              return '<div>' +
+                  escape(data.name) +
+                  '<span class="label">' + data.city + ' | ' + data.country + '</span>' +
+                  '</div>';
+          }
+        }
+      },
+      selectizeOptionDestination:{
+        placeholder: 'Port of destination of Journey', 
+        valueField:'id', 
+        labelField:'name', 
+        searchField:['name', 'city', 'country'], 
+        options: this.airports, 
+        create: false,
+        render: {
+          option: function (data, escape) {
+              return '<div>' +
+                  '<span class="title">' + escape(data.name) + '</span>' +
+                  '<span class="label">City: '+ data.city + ' | Country: ' + data.country + '</span>' +
+                  '</div>';
+          },
+          item: function (data, escape) {
+              return '<div>' +
+                  escape(data.name) +
+                  '<span class="label">' + data.city + ' | ' + data.country + '</span>' +
+                  '</div>';
+          }
+        }
       }
     }
   },

@@ -68,7 +68,7 @@ class PassengerController extends Controller
     public function show(Passenger $passenger)
     {
         //
-        $passenger->load('countries');
+        $passenger->load(['countries','origin','destination']);
         return Inertia::render('Passenger/show', [
             "passenger" => $passenger
         ]);

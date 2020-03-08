@@ -10,20 +10,26 @@
         .col-sm-6
           .card
             .card-body.border-bottom.py-3
-              form_static(label = 'Name of Passenger') {{passenger.name}}
+              
               .row
+                .col-sm-8.col-6
+                  form_static(label = 'Name of Passenger') {{passenger.name}}
                 .col-sm-4.col-6
                   form_static(label = 'Passport Number') {{passenger.passport}}
+                .col-sm-4.col-6
+                  form_static(label = 'Date of Arrival') {{passenger.date}}
                 .col-sm-4.col-6
                   form_static(label = 'Flight Number') {{passenger.flight}}
                 .col-sm-4.col-6
                   form_static(label = 'Seat Number' ) {{passenger.seat}}
-                .col-sm-4.col-6
-                  form_static(label = 'Date of Arrival') {{passenger.date}}
-                .col-sm-4.col-6
-                  form_static(label = 'Port of origin') {{passenger.origin}}
-                .col-sm-4.col-6
-                  form_static(label = 'Port of destination' ) {{passenger.destination}}
+                .col-6
+                  form_static.bottom-margin-0(label = 'Port of origin') 
+                    p.m-0 {{passenger.origin.name}}
+                    p.m-0.small.text-muted {{passenger.origin.city}} | {{passenger.origin.country}}
+                .col-6
+                  form_static.bottom-margin-0(label = 'Port of destination' )
+                    p.m-0 {{passenger.destination.name}}
+                    p.m-0.small.text-muted {{passenger.destination.city}} | {{passenger.destination.country}}
         
           .card
             .card-body.border-bottom.py-3

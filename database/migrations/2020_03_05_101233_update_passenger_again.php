@@ -15,9 +15,9 @@ class UpdatePassengerAgain extends Migration
     {
         Schema::table('passengers', function (Blueprint $table) {
             //
-            $table->string('tehsil')->nullable()->change();
-            $table->string('phone')->nullable()->change();
-            $table->string('email')->nullable()->change();
+            // $table->string('tehsil')->nullable()->change();
+            // $table->string('phone')->nullable()->change();
+            // $table->string('email')->nullable()->change();
         });
     }
 

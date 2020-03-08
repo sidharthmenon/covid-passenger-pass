@@ -20,22 +20,27 @@ class CreatePassengerTable extends Migration
             $table->string('flight');
             $table->string('passport');
             $table->string('date');
-            $table->string('origin');
-            $table->string('destination');
+            $table->unsignedBigInteger('origin');
+            $table->unsignedBigInteger('destination');
             $table->string('house');
             $table->string('street');
-            $table->string('tehsil');
+            $table->string('tehsil')->nullable();
             $table->string('district');
             $table->string('state');
             $table->string('pin');
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->string('mobile');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('fever');
             $table->string('cough');
             $table->string('respiratory');
             $table->string('cities');
+            $table->text('remarks')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
+
+            $table->foreign('origin')->references('id')->on('airports');
+            $table->foreign('destination')->references('id')->on('airports');
         });
 
         Schema::create('country_passenger', function (Blueprint $table){
