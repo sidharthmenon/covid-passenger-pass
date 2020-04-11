@@ -8,6 +8,7 @@
 
       .row
         .col-sm-6.text-center
+          p {{route('passengers.show', {id: passenger.id})}}
           qrcode(:value="route('passengers.show', {id: passenger.id})" :options='{ width: 400 }')
           h4.mt-3 {{passenger.name}}
           p.m-0 {{passenger.passport}}
